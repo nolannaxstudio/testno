@@ -202,6 +202,24 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Transition entre pages */
+.fade-out {
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeInSmooth 1s ease forwards;
+}
+
+@keyframes fadeInSmooth {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
   </style>
 </head>
 <body>
@@ -226,7 +244,7 @@ footer {
 </div>
 
 <!-- SITE PRINCIPAL -->
-<div id="main-site" style="display:none;">
+<div id="main-site" style="display:none; opacity:0;">
   <header>NolannaxStudio</header>
 
   <nav>
@@ -287,7 +305,7 @@ footer {
 
 <script>
 /* -------- COMPTE À REBOURS PRINCIPAL -------- */
-const targetDate = new Date("2025-11-06T16:25:00");
+const targetDate = new Date("2025-11-06T16:36:00");
 const comingSoon = document.getElementById("coming-soon");
 const mainSite = document.getElementById("main-site");
 
@@ -305,10 +323,18 @@ function updateCountdown() {
   document.getElementById("seconds").textContent = secs.toString().padStart(2, "0");
 
   if (diff <= 0) {
+    clearInterval(timer);
+    transitionToMainSite();
+  }
+}
+
+function transitionToMainSite() {
+  comingSoon.classList.add("fade-out");
+  setTimeout(() => {
     comingSoon.style.display = "none";
     mainSite.style.display = "block";
-    clearInterval(timer);
-  }
+    mainSite.classList.add("fade-in");
+  }, 1000);
 }
 
 const timer = setInterval(updateCountdown, 1000);
@@ -319,8 +345,7 @@ document.getElementById("devBtn").addEventListener("click", () => {
   const code = prompt("Entre le code développeur :");
   if (code === "8965") {
     alert("Accès autorisé !");
-    comingSoon.style.display = "none";
-    mainSite.style.display = "block";
+    transitionToMainSite();
   } else {
     alert("Code incorrect.");
   }
