@@ -122,7 +122,6 @@ footer {
   overflow: hidden;
 }
 
-/* Vidéo de fond */
 #coming-soon video {
   position: fixed;
   top: 0;
@@ -136,7 +135,6 @@ footer {
   background: black;
 }
 
-/* Contenu */
 .coming-content {
   z-index: 2;
   display: flex;
@@ -172,7 +170,6 @@ footer {
   letter-spacing: 1px;
 }
 
-/* Boutons */
 #introBtn, #devBtn {
   margin: 10px;
   padding: 12px 30px;
@@ -191,12 +188,24 @@ footer {
   transform: scale(1.05);
 }
 
+/* PAGE VIDÉO INTRO */
+#intro-video {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background: black;
+}
+#intro-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -209,7 +218,6 @@ footer {
 <div id="coming-soon">
   <video id="backgroundVideo" autoplay muted loop playsinline>
     <source src="Minuteur.mkv" type="video/mp4">
-    Votre navigateur ne supporte pas la lecture de vidéo.
   </video>
 
   <div class="coming-content">
@@ -222,10 +230,16 @@ footer {
       <div class="time-box"><div class="value" id="seconds">00</div><div class="label">Secondes</div></div>
     </div>
 
-    <!-- Boutons -->
     <button id="introBtn">INTRO</button>
     <button id="devBtn">Accès développeur</button>
   </div>
+</div>
+
+<!-- PAGE VIDÉO INTRO -->
+<div id="intro-video">
+  <video id="introClip" autoplay playsinline>
+    <source src="re.mp4" type="video/mp4">
+  </video>
 </div>
 
 <!-- SITE PRINCIPAL -->
@@ -239,72 +253,28 @@ footer {
     <button onclick="showPage('contact')">Contact</button>
   </nav>
 
-  <!-- PAGE D'ACCUEIL -->
   <div id="home" class="page active">
     <h2>Bienvenue sur NolannaxStudio 🌟</h2>
     <p>Bienvenue dans notre studio numérique. Découvrez nos outils exclusifs et nos créations.</p>
   </div>
 
-  <!-- PAGE TÉLÉCHARGEMENT -->
   <div id="downloads" class="page">
     <h2>📦 Fichiers disponibles</h2>
-
     <div class="file-card" onclick="openFile('AutoClicker.exe', 'https://mega.nz/file/prU2ySJA#xMVSLYxOV4bHLwsOGSBpyRLGemTlD39wm4asgZfukn4')">
       ⚙️ OPAutoClicker
     </div>
-
-    <h2>📦 Fichiers Roblox Studio disponibles</h2>
-    <div class="file-card" onclick="openFile('Shoot a brainrot', 'https://mega.nz/file/hqcQgbpD#iyPksPJlXB7K0fA3VRwF5ObV-lpnQtfSM94iuE8ThKw')">
-      🧠 Shoot a brainrot
-    </div>
-
-    <div class="file-card" onclick="openFile('Find the Button', 'https://mega.nz/file/Mv1gTCSS#YaKV4_GMyN3HkRwn3OfJByo7AGVyjH8oVUrcZon4ECw')">
-      🔘 Find the Button
-    </div>
-
-    <h2>🎬 Films disponibles</h2>
-      <div class="file-card" onclick="openFile('StreamLiveZone', 'https://streamlivezone.netlify.app/')">
-      🎥 Film
-    </div>
   </div>
 
-  <!-- PAGE TUTO -->
-  <div id="tuto" class="page">
-    <h2>🎥 Spoof Animation</h2>
-    <p>Regarde le tutoriel ci-dessous pour apprendre à faire l’animation Spoof :</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/9RyTRftm0XY" 
-      title="Spoof Animation" frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <!-- PAGE DU FICHIER -->
-  <div id="filePage" class="page">
-    <h2 id="fileName">Nom du fichier</h2>
-    <p>⏱️ Temps avant téléchargement : <span id="timer">05:00</span></p>
-    <div class="progress-bar"><div id="progress" class="progress"></div></div>
-    <button id="downloadBtn" class="download" disabled>Télécharger</button><br><br>
-    <button onclick="showPage('downloads')">⬅ Retour</button>
-  </div>
-
-  <!-- PAGE CONTACT -->
-  <div id="contact" class="page">
-    <h2>📬 Contact</h2>
-    <p>Discord : <strong>nolannax_</strong></p>
-    <p>Email : <strong>contact@nolannaxstudio.com</strong></p>
-  </div>
-
-  <footer>
-    © 2025 NolannaxStudio | Tous droits réservés.
-  </footer>
+  <footer>© 2025 NolannaxStudio | Tous droits réservés.</footer>
 </div>
 
 <script>
 /* -------- COMPTE À REBOURS PRINCIPAL -------- */
-const targetDate = new Date("2025-11-07T17:55:00Z");
+const targetDate = new Date("2025-11-07T18:05:00Z");
 const comingSoon = document.getElementById("coming-soon");
 const mainSite = document.getElementById("main-site");
+const introVideo = document.getElementById("intro-video");
+const introClip = document.getElementById("introClip");
 
 function updateCountdown() {
   const now = new Date();
@@ -314,15 +284,27 @@ function updateCountdown() {
   const mins = Math.max(0, Math.floor((diff % 3600) / 60));
   const secs = Math.max(0, diff % 60);
 
-  document.getElementById("days").textContent = days.toString().padStart(2, "0");
-  document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-  document.getElementById("minutes").textContent = mins.toString().padStart(2, "0");
-  document.getElementById("seconds").textContent = secs.toString().padStart(2, "0");
+  document.getElementById("days").textContent = days.toString().padStart(2,"0");
+  document.getElementById("hours").textContent = hours.toString().padStart(2,"0");
+  document.getElementById("minutes").textContent = mins.toString().padStart(2,"0");
+  document.getElementById("seconds").textContent = secs.toString().padStart(2,"0");
 
   if (diff <= 0) {
     clearInterval(timer);
-    comingSoon.style.display = "none";
-    mainSite.style.display = "block";
+    const played = localStorage.getItem("introPlayed");
+    if (!played) {
+      comingSoon.style.display = "none";
+      introVideo.style.display = "block";
+      introClip.play();
+      introClip.addEventListener("ended", () => {
+        introVideo.style.display = "none";
+        mainSite.style.display = "block";
+        localStorage.setItem("introPlayed", "true");
+      });
+    } else {
+      comingSoon.style.display = "none";
+      mainSite.style.display = "block";
+    }
   }
 }
 
@@ -333,61 +315,6 @@ updateCountdown();
 document.getElementById("introBtn").addEventListener("click", () => {
   window.open("https://www.youtube.com/watch?v=Nw-MqOLxFiU", "_blank");
 });
-
-/* -------- ACCÈS DÉVELOPPEUR -------- */
-document.getElementById("devBtn").addEventListener("click", async () => {
-  try {
-    const response = await fetch("code.txt");
-    const realCode = (await response.text()).trim();
-    const code = prompt("Entre le code développeur :");
-    if (code === realCode) {
-      alert("Accès autorisé !");
-      comingSoon.style.display = "none";
-      mainSite.style.display = "block";
-    } else {
-      alert("Code incorrect.");
-    }
-  } catch (e) {
-    alert("Erreur : impossible de vérifier le code.");
-  }
-});
-
-/* -------- NAVIGATION -------- */
-function showPage(pageId) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(pageId).classList.add("active");
-}
-
-/* -------- TÉLÉCHARGEMENT AVEC TIMER -------- */
-let countdown;
-function openFile(name, url) {
-  showPage('filePage');
-  document.getElementById('fileName').textContent = "Téléchargement : " + name;
-  document.getElementById('downloadBtn').disabled = true;
-  document.getElementById('downloadBtn').textContent = "En attente...";
-  document.getElementById('timer').textContent = "05:00";
-  document.getElementById('progress').style.width = "0%";
-
-  clearInterval(countdown);
-  let timeLeft = 5 * 60;
-  const progress = document.getElementById('progress');
-
-  countdown = setInterval(() => {
-    const min = Math.floor(timeLeft / 60);
-    const sec = timeLeft % 60;
-    document.getElementById('timer').textContent = `${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
-    progress.style.width = ((5 * 60 - timeLeft) / (5 * 60)) * 100 + "%";
-
-    if (timeLeft <= 0) {
-      clearInterval(countdown);
-      document.getElementById('downloadBtn').disabled = false;
-      document.getElementById('downloadBtn').textContent = "Télécharger maintenant";
-      document.getElementById('downloadBtn').onclick = () => window.location.href = url;
-      progress.style.width = "100%";
-    }
-    timeLeft--;
-  }, 1000);
-}
 </script>
 </body>
 </html>
