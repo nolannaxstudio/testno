@@ -145,6 +145,21 @@ footer {
   justify-content: center;
 }
 
+/* Vidéo YouTube */
+.video-container {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 20px;
+}
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
 /* Compte à rebours */
 #countdown {
   display: flex;
@@ -173,7 +188,7 @@ footer {
 }
 
 /* Boutons */
-#alertBtn, #devBtn {
+#introBtn, #devBtn {
   margin: 10px;
   padding: 12px 30px;
   border-radius: 8px;
@@ -185,7 +200,7 @@ footer {
   transition: 0.3s;
 }
 
-#alertBtn:hover, #devBtn:hover {
+#introBtn:hover, #devBtn:hover {
   background: white;
   color: black;
   transform: scale(1.05);
@@ -201,7 +216,6 @@ footer {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
   </style>
 </head>
 <body>
@@ -214,13 +228,21 @@ footer {
 
   <div class="coming-content">
     <h1>🚧 NolannaxStudio arrive bientôt 🚧</h1>
+
+    <!-- Vidéo YouTube intégrée -->
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/Nw-MqOLxFiU" title="NolannaxStudio Intro" allowfullscreen></iframe>
+    </div>
+
     <div id="countdown">
       <div class="time-box"><div class="value" id="days">00</div><div class="label">Jours</div></div>
       <div class="time-box"><div class="value" id="hours">00</div><div class="label">Heures</div></div>
       <div class="time-box"><div class="value" id="minutes">00</div><div class="label">Minutes</div></div>
       <div class="time-box"><div class="value" id="seconds">00</div><div class="label">Secondes</div></div>
     </div>
-    <button id="alertBtn">M'alerter</button>
+
+    <!-- Boutons -->
+    <button id="introBtn">INTRO</button>
     <button id="devBtn">Accès développeur</button>
   </div>
 </div>
@@ -241,7 +263,7 @@ footer {
     <p>Bienvenue dans notre studio numérique. Découvrez nos outils exclusifs et nos créations.</p>
   </div>
 
-<!-- PAGE TÉLÉCHARGEMENT -->
+  <!-- PAGE TÉLÉCHARGEMENT -->
   <div id="downloads" class="page">
     <h2>📦 Fichiers disponibles</h2>
 
@@ -314,6 +336,11 @@ function updateCountdown() {
 const timer = setInterval(updateCountdown, 1000);
 updateCountdown();
 
+/* -------- BOUTON INTRO -------- */
+document.getElementById("introBtn").addEventListener("click", () => {
+  alert("Regarde l’intro ci-dessus !");
+});
+
 /* -------- ACCÈS DÉVELOPPEUR -------- */
 document.getElementById("devBtn").addEventListener("click", async () => {
   try {
@@ -330,13 +357,6 @@ document.getElementById("devBtn").addEventListener("click", async () => {
   } catch (e) {
     alert("Erreur : impossible de vérifier le code.");
   }
-});
-
-/* -------- Alerte mail -------- */
-document.getElementById("alertBtn").addEventListener("click", () => {
-  const email = prompt("Entre ton email pour être alerté à l’ouverture :");
-  if (email && /\S+@\S+\.\S+/.test(email)) alert("Tu seras alerté à l’ouverture !");
-  else if (email) alert("Email invalide.");
 });
 
 /* -------- NAVIGATION -------- */
