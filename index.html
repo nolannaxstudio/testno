@@ -205,6 +205,7 @@ footer {
 </head>
 <body>
 
+<!-- PAGE COMING SOON -->
 <div id="coming-soon">
   <video id="backgroundVideo" autoplay muted loop playsinline>
     <source src="Minuteur.mkv" type="video/mp4">
@@ -225,6 +226,14 @@ footer {
     <button id="introBtn">INTRO</button>
     <button id="devBtn">Accès développeur</button>
   </div>
+</div>
+
+<!-- PAGE INTRO VIDÉO -->
+<div id="intro-video" style="display:none; height:100vh; width:100vw; background:black;">
+  <video id="introClip" autoplay playsinline style="width:100%; height:100%; object-fit:cover;">
+    <source src="re.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la lecture de cette vidéo.
+  </video>
 </div>
 
 <!-- SITE PRINCIPAL -->
@@ -304,6 +313,8 @@ footer {
 const targetDate = new Date("2025-11-08T15:00:00Z");
 const comingSoon = document.getElementById("coming-soon");
 const mainSite = document.getElementById("main-site");
+const introVideo = document.getElementById("intro-video");
+const introClip = document.getElementById("introClip");
 
 function updateCountdown() {
   const now = new Date();
@@ -319,9 +330,15 @@ function updateCountdown() {
   document.getElementById("seconds").textContent = secs.toString().padStart(2, "0");
 
   if (diff <= 0) {
-    comingSoon.style.display = "none";
-    mainSite.style.display = "block";
     clearInterval(timer);
+    comingSoon.style.display = "none";
+    introVideo.style.display = "block";
+    introClip.play();
+
+    introClip.addEventListener("ended", () => {
+      introVideo.style.display = "none";
+      mainSite.style.display = "block";
+    });
   }
 }
 
