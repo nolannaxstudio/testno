@@ -301,7 +301,7 @@ footer {
 
 <script>
 /* -------- COMPTE À REBOURS PRINCIPAL -------- */
-const targetDate = new Date("2025-11-08T15:00:00Z");
+const targetDate = new Date("2025-11-07T17:20:00Z");
 const comingSoon = document.getElementById("coming-soon");
 const mainSite = document.getElementById("main-site");
 
@@ -319,10 +319,39 @@ function updateCountdown() {
   document.getElementById("seconds").textContent = secs.toString().padStart(2, "0");
 
   if (diff <= 0) {
+    clearInterval(timer);
+    playThanksVideo();
+  }
+}
+
+const timer = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* -------- LECTURE DE LA VIDÉO DE REMERCIEMENT -------- */
+function playThanksVideo() {
+  // Cache le contenu du "coming soon"
+  document.querySelector(".coming-content").style.display = "none";
+
+  // Crée la vidéo de remerciement
+  const video = document.createElement("video");
+  video.src = "re.mp4";
+  video.autoplay = true;
+  video.controls = false;
+  video.style.width = "100%";
+  video.style.height = "100%";
+  video.style.objectFit = "cover";
+  video.style.position = "absolute";
+  video.style.top = "0";
+  video.style.left = "0";
+  video.style.zIndex = "10";
+
+  comingSoon.appendChild(video);
+
+  // Quand la vidéo se termine, affiche le site principal
+  video.onended = () => {
     comingSoon.style.display = "none";
     mainSite.style.display = "block";
-    clearInterval(timer);
-  }
+  };
 }
 
 const timer = setInterval(updateCountdown, 1000);
