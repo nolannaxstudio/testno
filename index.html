@@ -234,6 +234,7 @@ footer {
   <nav>
     <button onclick="showPage('home')">Accueil</button>
     <button onclick="showPage('downloads')">Téléchargement</button>
+    <button onclick="showPage('tuto')">Tuto</button>
     <button onclick="showPage('contact')">Contact</button>
   </nav>
 
@@ -266,6 +267,17 @@ footer {
     </div>
   </div>
 
+  <!-- PAGE TUTO -->
+  <div id="tuto" class="page">
+    <h2>🎥 Spoof Animation</h2>
+    <p>Regarde le tutoriel ci-dessous pour apprendre à faire l’animation Spoof :</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9RyTRftm0XY" 
+      title="Spoof Animation" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+
   <!-- PAGE DU FICHIER -->
   <div id="filePage" class="page">
     <h2 id="fileName">Nom du fichier</h2>
@@ -289,7 +301,7 @@ footer {
 
 <script>
 /* -------- COMPTE À REBOURS PRINCIPAL -------- */
-const targetDate = new Date("2025-11-07T11:15:00Z");
+const targetDate = new Date("2025-11-08T15:00:00Z");
 const comingSoon = document.getElementById("coming-soon");
 const mainSite = document.getElementById("main-site");
 
