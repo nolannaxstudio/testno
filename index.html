@@ -5,252 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NolannaxStudio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
   <style>
-/* ----- STYLE GLOBAL ----- */
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: #0e141a;
-  color: white;
-  overflow-x: hidden;
-}
+    /* ----- STYLE GLOBAL ----- */
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      overflow-x: hidden;
+    }
 
-/* ----- ANIMATIONS ----- */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    /* HEADER */
+    header {
+      background-color: rgba(0, 0, 0, 0.5);
+      text-align: center;
+      padding: 20px;
+      font-size: 2em;
+      letter-spacing: 2px;
+      font-weight: bold;
+      text-transform: uppercase;
+      animation: fadeDown 1s ease-in-out;
+    }
 
-@keyframes fadeDown {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    /* NAVIGATION */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+    }
 
-/* ----- PAGE COMING SOON ----- */
-#coming-soon {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-  z-index: 3;
-}
+    nav button {
+      background: none;
+      border: 2px solid #1abc9c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
 
-#coming-soon video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.35;
-  z-index: -1;
-  background: black;
-}
+    nav button:hover {
+      background-color: #1abc9c;
+      transform: scale(1.05);
+    }
 
-.coming-content h1 {
-  font-size: 2.2em;
-  text-shadow: 0 0 15px rgba(255,255,255,0.4);
-  animation: fadeDown 1s ease;
-}
+    /* PAGES */
+    .page {
+      display: none;
+      padding: 40px 20px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
 
-/* Countdown */
-#countdown {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+    .active {
+      display: block;
+    }
 
-.time-box {
-  background: rgba(255,255,255,0.12);
-  border-radius: 15px;
-  padding: 15px 25px;
-  backdrop-filter: blur(10px);
-  min-width: 100px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-}
+    /* CARTES */
+    .file-card {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 400px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      transition: all 0.3s;
+      font-size: 1.2em;
+    }
 
-.value {
-  font-size: 42px;
-  font-weight: 700;
-}
+    .file-card:hover {
+      transform: scale(1.05);
+      background-color: rgba(255,255,255,0.15);
+    }
 
-.label {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+    /* FOOTER */
+    footer {
+      text-align: center;
+      font-size: 0.8em;
+      opacity: 0.7;
+      margin: 40px 0;
+    }
 
-/* Boutons */
-#introBtn, #devBtn {
-  margin-top: 15px;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  background: #1abc9c;
-  font-weight: bold;
-  font-size: 1em;
-  transition: 0.3s;
-}
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-#introBtn:hover, #devBtn:hover {
-  background: white;
-  color: black;
-  transform: scale(1.05);
-}
-
-/* ----- SITE PRINCIPAL ----- */
-#main-site {
-  display: none;
-  animation: fadeIn 1s ease;
-}
-
-header {
-  background-color: rgba(0,0,0,0.4);
-  padding: 20px;
-  text-align: center;
-  font-size: 2.2em;
-  letter-spacing: 2px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-/* NAVIGATION */
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  padding: 15px;
-  background: rgba(0,0,0,0.3);
-}
-
-nav button {
-  background: none;
-  border: 2px solid #1abc9c;
-  padding: 10px 20px;
-  border-radius: 25px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-nav button:hover {
-  background: #1abc9c;
-  transform: scale(1.05);
-}
-
-/* PAGES */
-.page {
-  display: none;
-  padding: 40px 20px;
-  animation: fadeIn 0.8s ease;
-}
-
-.page.active {
-  display: block;
-}
-
-/* CARTES DE FICHIERS */
-.file-card {
-  background: rgba(255,255,255,0.1);
-  padding: 20px;
-  width: 90%;
-  max-width: 400px;
-  margin: 20px auto;
-  border-radius: 15px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 1.2em;
-  transition: 0.3s;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
-
-.file-card:hover {
-  background: rgba(255,255,255,0.18);
-  transform: scale(1.05);
-}
-
-/* Barre progression */
-.progress-bar {
-  width: 80%;
-  max-width: 400px;
-  height: 14px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
-  margin: 20px auto;
-  overflow: hidden;
-}
-
-.progress {
-  width: 0%;
-  height: 100%;
-  background-color: #1abc9c;
-  transition: width 1s linear;
-}
-
-footer {
-  text-align: center;
-  opacity: 0.6;
-  padding: 25px;
-  margin-top: 40px;
-}
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
-
 <body>
 
-<!-- ----- COMING SOON ----- -->
-<div id="coming-soon">
-  <video autoplay muted loop playsinline>
-    <source src="Minuteur.mkv" type="video/mp4">
-  </video>
-
-  <div class="coming-content">
-    <h1>🚧 NolannaxStudio en maintenance 🚧</h1>
-
-    <div id="countdown">
-      <div class="time-box"><div class="value" id="days">00</div><div class="label">Jours</div></div>
-      <div class="time-box"><div class="value" id="hours">00</div><div class="label">Heures</div></div>
-      <div class="time-box"><div class="value" id="minutes">00</div><div class="label">Minutes</div></div>
-      <div class="time-box"><div class="value" id="seconds">00</div><div class="label">Secondes</div></div>
-    </div>
-
-    <button id="introBtn">Mise à jour</button>
-    <button id="devBtn">Accès développeur</button>
-  </div>
-</div>
-
-<!-- ----- SITE PRINCIPAL ----- -->
+<!-- SITE PRINCIPAL -->
 <div id="main-site">
   <header>NolannaxStudio</header>
 
   <nav>
     <button onclick="showPage('home')">Accueil</button>
-    <button onclick="showPage('downloads')">Téléchargements</button>
+    <button onclick="showPage('downloads')">Téléchargement</button>
     <button onclick="showPage('tuto')">Tuto</button>
     <button onclick="showPage('contact')">Contact</button>
   </nav>
 
+  <!-- PAGE D'ACCUEIL -->
   <div id="home" class="page active">
     <h2>Bienvenue sur NolannaxStudio 🌟</h2>
-    <p>Découvrez nos outils exclusifs, créations et ressources téléchargeables.</p>
+    <p>Bienvenue dans notre studio numérique. Découvrez nos outils exclusifs et nos créations.</p>
   </div>
 
+  <!-- PAGE TÉLÉCHARGEMENT -->
   <div id="downloads" class="page">
     <h2>📦 Fichiers disponibles</h2>
 
-    <div class="file-card" onclick="openFile('OPAutoClicker', 'https://mega.nz/file/prU2ySJA#xMVSLYxOV4bHLwsOGSBpyRLGemTlD39wm4asgZfukn4')">
+    <div class="file-card" onclick="openFile('AutoClicker.exe', 'https://mega.nz/file/prU2ySJA#xMVSLYxOV4bHLwsOGSBpyRLGemTlD39wm4asgZfukn4')">
       ⚙️ OPAutoClicker
     </div>
 
-    <h2>📦 Roblox Studio</h2>
+    <h2>📦 Fichiers Roblox Studio disponibles</h2>
     <div class="file-card" onclick="openFile('Shoot a brainrot', 'https://mega.nz/file/hqcQgbpD#iyPksPJlXB7K0fA3VRwF5ObV-lpnQtfSM94iuE8ThKw')">
       🧠 Shoot a brainrot
     </div>
@@ -258,36 +139,66 @@ footer {
     <div class="file-card" onclick="openFile('jungle military', 'https://mega.nz/file/A3khSDCA#XQ5_D8LqBe9cVsmHqyei5nNcUAHrp04qDwVHfjAN7wA')">
       🌴 jungle military
     </div>
-
+    
     <div class="file-card" onclick="openFile('Please donate', 'https://mega.nz/file/QvFwQCaI#acJqksp1pELaqAA10PXuy3T1dqgNk7XciFnMAvEaGtQ')">
       💰 Please donate
     </div>
 
-    <h2>🎮 Jeux</h2>
-
-    <div class="file-card" onclick="openFile('Poppy Chapter 4', 'https://mega.nz/folder/wu8wyYyK#I5NorYoVY96Jx1AdpuE2FQ')">
-      🧌 Poppy Playtime Chapitre 4
+    <div class="file-card" onclick="openFile('VirtualVogue - Fantasy RPG', 'https://mega.nz/file/l6cS1Qwa#hcaVFuyFno5TA4X3_q0KfkD7sKNrsUKI3VQVV1bqxI0')">
+      🔫 VirtualVogue - Fantasy RPG
+    </div>
+    
+    <div class="file-card" onclick="openFile('Find the Button', 'https://mega.nz/file/Mv1gTCSS#YaKV4_GMyN3HkRwn3OfJByo7AGVyjH8oVUrcZon4ECw')">
+      🔘 Find the Button
     </div>
 
-    <div class="file-card" onclick="openFile('Garten of Banban 8', 'https://mega.nz/file/tnUXxDyA#zXS--e2W60GHv2vlXO0HzGQ6meB7YhqkEPSQ5op0kiI')">
-      🧌 Garten of Banban 8
+    <h2>🕹️ Ancien jeux Roblox</h2>
+    <div class="file-card" onclick="openFile('Steal a brainrot', 'https://www.mediafire.com/folder/trxldkutvjypl/SAB+UNCOPYLOCKS+-+Do_I_Tech')">
+      🦒 Steal a brainrot ancien version
+    </div>
+
+    <div class="file-card" onclick="openFile('Piggy', 'https://mega.nz/file/JiFhxJ4Q#2zV-Vun-Wg6sFb5v6xq7TSA2NeTHNnNc7pbRPZL7QAs')">
+      🐷 Piggy
+    </div>
+
+    <div class="file-card" onclick="openFile('Work at a Pizza', 'https://mega.nz/file/JzMnEIIY#Q3HUvEN_Qc0QPJmrg0LljU12F9DHC8BJw9cCuDQ-4cM')">
+      🍕 Work at a Pizza
+    </div>
+    
+    <h2>🎮 Jeux vidéo</h2>
+    <div class="file-card" onclick="openFile('Poppy playtime chapter 4', 'https://mega.nz/folder/wu8wyYyK#I5NorYoVY96Jx1AdpuE2FQ')">
+      🧌 Poppy playtime chapter 4
+    </div>
+
+    <div class="file-card" onclick="openFile('Garten of banban 8', 'https://mega.nz/file/tnUXxDyA#zXS--e2W60GHv2vlXO0HzGQ6meB7YhqkEPSQ5op0kiI')">
+      🧌 Garten of banban 8
+    </div>
+    
+    <h2>🎬 Films disponibles</h2>
+    <div class="file-card" onclick="openFile('StreamLiveZone', 'https://streamlivezone.netlify.app/')">
+      🎥 Film
     </div>
   </div>
 
+  <!-- PAGE TUTO -->
   <div id="tuto" class="page">
     <h2>🎥 Spoof Animation</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/lV3Q4Y34_TU" allowfullscreen></iframe>
+    <p>Regarde le tutoriel ci-dessous pour apprendre à faire l’animation Spoof :</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/lV3Q4Y34_TU" 
+      title="Spoof Animation" frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
   </div>
 
+  <!-- PAGE DU FICHIER -->
   <div id="filePage" class="page">
-    <h2 id="fileName"></h2>
-    <p>⏱️ Téléchargement dans <span id="timer">05:00</span></p>
-    <div class="progress-bar"><div id="progress" class="progress"></div></div>
-    <button id="downloadBtn" disabled>Télécharger</button>
-    <br><br>
+    <h2 id="fileName">Nom du fichier</h2>
+    <button id="downloadBtn" class="download" onclick="window.open(this.dataset.url, '_blank')">Télécharger</button><br><br>
     <button onclick="showPage('downloads')">⬅ Retour</button>
   </div>
 
+  <!-- PAGE CONTACT -->
   <div id="contact" class="page">
     <h2>📬 Contact</h2>
     <p>Discord : <strong>nolannax_</strong></p>
@@ -295,80 +206,25 @@ footer {
   </div>
 
   <footer>
-    © 2025 NolannaxStudio — Tous droits réservés.
+    © 2025 NolannaxStudio | Tous droits réservés.
   </footer>
-
 </div>
 
 <script>
-/* COMPTE À REBOURS */
-const targetDate = new Date("2025-11-11T15:00:00Z");
-function updateCountdown() {
-  const now = new Date();
-  const diff = Math.floor((targetDate - now) / 1000);
-
-  document.getElementById("days").textContent = String(Math.max(0, Math.floor(diff / 86400))).padStart(2,"0");
-  document.getElementById("hours").textContent = String(Math.max(0, Math.floor((diff % 86400) / 3600))).padStart(2,"0");
-  document.getElementById("minutes").textContent = String(Math.max(0, Math.floor((diff % 3600) / 60))).padStart(2,"0");
-  document.getElementById("seconds").textContent = String(Math.max(0, diff % 60)).padStart(2,"0");
-
-  if (diff <= 0) {
-    document.getElementById("coming-soon").style.display = "none";
-    document.getElementById("main-site").style.display = "block";
-  }
-}
-setInterval(updateCountdown, 1000);
-
-/* BOUTONS */
-document.getElementById("introBtn").onclick = () => {
-  window.open("https://www.youtube.com/watch?v=ISuT4Tvbd6k", "_blank");
-};
-
-document.getElementById("devBtn").onclick = async () => {
-  const code = prompt("Code développeur :");
-  const realCode = (await (await fetch("code.txt")).text()).trim();
-  if (code === realCode) {
-    alert("Accès autorisé !");
-    document.getElementById("coming-soon").style.display = "none";
-    document.getElementById("main-site").style.display = "block";
-  } else {
-    alert("Code incorrect.");
-  }
-};
-
-/* NAVIGATION */
-function showPage(id) {
+/* -------- NAVIGATION -------- */
+function showPage(pageId) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+  document.getElementById(pageId).classList.add("active");
 }
 
-/* TIMER + TELECHARGEMENT */
-let countdown;
+/* -------- OUVRIR UN FICHIER -------- */
 function openFile(name, url) {
-  showPage("filePage");
-  document.getElementById("fileName").textContent = name;
-  document.getElementById("downloadBtn").disabled = true;
-  document.getElementById("downloadBtn").textContent = "En attente...";
-  document.getElementById("progress").style.width = "0%";
+  showPage('filePage');
+  const fileName = document.getElementById('fileName');
+  const downloadBtn = document.getElementById('downloadBtn');
 
-  let timeLeft = 300;
-  clearInterval(countdown);
-
-  countdown = setInterval(() => {
-    let min = String(Math.floor(timeLeft / 60)).padStart(2,"0");
-    let sec = String(timeLeft % 60).padStart(2,"0");
-
-    document.getElementById("timer").textContent = `${min}:${sec}`;
-    document.getElementById("progress").style.width = `${((300-timeLeft)/300)*100}%`;
-
-    if (timeLeft <= 0) {
-      clearInterval(countdown);
-      document.getElementById("downloadBtn").disabled = false;
-      document.getElementById("downloadBtn").textContent = "Télécharger maintenant";
-      document.getElementById("downloadBtn").onclick = () => window.location.href = url;
-    }
-    timeLeft--;
-  }, 1000);
+  fileName.textContent = name;
+  downloadBtn.dataset.url = url; // stocke l'URL dans le bouton
 }
 </script>
 </body>
